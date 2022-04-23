@@ -25,7 +25,7 @@ public class LivroService {
 	public LivroDTO insertLivro(LivroDTO livro) {
 		
 		if(livro == null) {
-			throw new NullPointerException();
+			throw new NullPointerException("Erro ao tentar inserir um novo livro");
 		}
 		
 		Livro livroParaSalvar = new Livro(livro);

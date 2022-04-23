@@ -3,6 +3,7 @@ package com.senai.livros.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,13 +20,20 @@ public class Livro {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(nullable = false)
 	private String titulo;
 	private String subtitulo;
+	@Column(nullable = false)
 	private Integer numeroDePaginas;
+	@Column(nullable = false)
 	private Integer anoDeLancamento;
 	
 	@OneToMany
 	private List<Autor> autores = new ArrayList<>();
+	
+	public Livro() {
+		
+	}
 	
 	public Livro(LivroDTO livro) {
 		titulo = livro.getTitulo();

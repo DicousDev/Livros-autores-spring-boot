@@ -3,7 +3,12 @@ package com.senai.livros.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +23,19 @@ public class LivroController {
 	private LivroService service;
 	
 	@GetMapping
-	public List<LivroDTO> getLivrosAll() {
-		return service.getLivrosAll();
+	public ResponseEntity<List<LivroDTO>> getLivrosAll() {
+		List<LivroDTO> livros = service.getLivrosAll();
+		return ResponseEntity.status(HttpStatus.OK).body(livros);
+	}
+	
+	@PostMapping
+	public ResponseEntity<?> insertLivro(@RequestBody LivroDTO livro) {
+		try {
+			LivroDTO livroInserido = service.insertLivro(livro);
+			return ResponseEntity.status(HttpStatus.CREATED).body(livroInserido);
+		}
+		catch(NullPointerException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e);
+		}
 	}
 }
