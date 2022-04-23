@@ -35,6 +35,13 @@ public class Livro {
 		
 	}
 	
+	public Livro(String titulo, String subtitulo, Integer numeroDePaginas, Integer anoDeLancamento) {
+		this.titulo = titulo;
+		this.subtitulo = subtitulo;
+		this.numeroDePaginas = numeroDePaginas;
+		this.anoDeLancamento = anoDeLancamento;
+	}
+	
 	public Livro(LivroDTO livro) {
 		titulo = livro.getTitulo();
 		subtitulo = livro.getSubtitulo();
