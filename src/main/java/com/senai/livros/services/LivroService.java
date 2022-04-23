@@ -16,11 +16,12 @@ public class LivroService {
 	@Autowired
 	private LivroRepository repository;
 	
-	public List<LivroDTO> getLivrosAll() {
+	public List<LivroDTO> findLivrosAll() {
 		return repository.findAll().stream()
 				.map(livro -> new LivroDTO(livro))
 				.collect(Collectors.toList());
 	}
+	
 	
 	public LivroDTO insertLivro(LivroDTO livro) {
 		

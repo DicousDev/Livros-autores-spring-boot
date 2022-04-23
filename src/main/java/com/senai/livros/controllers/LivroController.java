@@ -23,8 +23,8 @@ public class LivroController {
 	private LivroService service;
 	
 	@GetMapping
-	public ResponseEntity<List<LivroDTO>> getLivrosAll() {
-		List<LivroDTO> livros = service.getLivrosAll();
+	public ResponseEntity<List<LivroDTO>> findLivrosAll() {
+		List<LivroDTO> livros = service.findLivrosAll();
 		return ResponseEntity.status(HttpStatus.OK).body(livros);
 	}
 	

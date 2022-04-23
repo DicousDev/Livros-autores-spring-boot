@@ -76,6 +76,17 @@ public class LivroTest {
 	}
 	
 	@Test
+	public void updateLivroNull() {
+		Assertions.assertThrows(NullPointerException.class, new Executable() {
+			
+			@Override
+			public void execute() {
+				service.updateLivro(1L, null);
+			}
+		});
+	}
+	
+	@Test
 	public void updateLivroNotFound() {
 		LivroDTO livroAlterado = new LivroDTO("", "", 50, 2022);
 		Assertions.assertThrows(NotFoundException.class, new Executable() {
@@ -83,17 +94,6 @@ public class LivroTest {
 			@Override
 			public void execute() {
 				service.updateLivro(100L, livroAlterado);
-			}
-		});
-	}
-	
-	@Test
-	public void updateLivroNull() {
-		Assertions.assertThrows(NullPointerException.class, new Executable() {
-			
-			@Override
-			public void execute() {
-				service.updateLivro(1L, null);
 			}
 		});
 	}
