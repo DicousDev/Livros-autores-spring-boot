@@ -19,6 +19,34 @@ public class LivroTest {
 	
 	@Autowired
 	private LivroService service;
+	
+	@Test
+	public void findById() {
+		LivroDTO livro = service.getLivroById(1L);
+		assertThat(livro).isNotNull();
+	}
+	
+	@Test
+	public void findByIdNull() {
+		Assertions.assertThrows(NullPointerException.class, new Executable() {
+			
+			@Override
+			public void execute() {
+				service.getLivroById(null);
+			}
+		});
+	}
+	
+	@Test
+	public void findByIdNotFound() {
+		Assertions.assertThrows(NotFoundException.class, new Executable() {
+			
+			@Override
+			public void execute() {
+				service.getLivroById(9999L);
+			}
+		});
+	}
 
 	@Test
 	public void insertLivro() {

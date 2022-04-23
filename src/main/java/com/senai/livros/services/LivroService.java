@@ -32,4 +32,13 @@ public class LivroService {
 		Livro livroSalvado = repository.save(livroParaSalvar);
 		return new LivroDTO(livroSalvado);
 	}
+	
+	public LivroDTO updateLivro(Long idLivro, LivroDTO livro) {
+		
+		if(livro == null) {
+			throw new NullPointerException("Erro ao tentar atualizar um livro");
+		}
+		
+		return null;
+	}
 }
