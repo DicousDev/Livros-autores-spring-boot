@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.senai.livros.dto.LivroDTO;
+
 @Entity
 @Table(name = "tb_livro")
 public class Livro {
@@ -24,6 +26,13 @@ public class Livro {
 	
 	@OneToMany
 	private List<Autor> autores = new ArrayList<>();
+	
+	public Livro(LivroDTO livro) {
+		titulo = livro.getTitulo();
+		subtitulo = livro.getSubtitulo();
+		numeroDePaginas = livro.getNumeroDePaginas();
+		anoDeLancamento = livro.getAnoDeLancamento();
+	}
 
 	public Long getId() {
 		return id;

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.senai.livros.dto.LivroDTO;
+import com.senai.livros.entities.Livro;
 import com.senai.livros.repositories.LivroRepository;
 
 @Service
@@ -19,5 +20,16 @@ public class LivroService {
 		return repository.findAll().stream()
 				.map(livro -> new LivroDTO(livro))
 				.collect(Collectors.toList());
+	}
+	
+	public LivroDTO insertLivro(LivroDTO livro) {
+		
+		if(livro == null) {
+			throw new NullPointerException();
+		}
+		
+		Livro livroParaSalvar = new Livro(livro);
+		Livro livroSalvado = repository.save(livroParaSalvar);
+		return new LivroDTO(livroSalvado);
 	}
 }

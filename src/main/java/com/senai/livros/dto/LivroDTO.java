@@ -15,6 +15,13 @@ public class LivroDTO {
 	private Integer anoDeLancamento;
 	private List<Autor> autores = new ArrayList<>();
 	
+	public LivroDTO(String titulo, String subtitulo, Integer numeroDePaginas, Integer anoDeLancamento) {
+		this.titulo = titulo;
+		this.subtitulo = subtitulo;
+		this.numeroDePaginas = numeroDePaginas;
+		this.anoDeLancamento = anoDeLancamento;
+	}
+	
 	public LivroDTO(Livro livro) {
 		id = livro.getId();
 		titulo = livro.getTitulo();
