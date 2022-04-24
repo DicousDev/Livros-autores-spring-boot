@@ -42,7 +42,7 @@ public class LivroTest {
 			
 			@Override
 			public void execute() {
-				service.findLivroById(9999L);
+				service.findLivroById(99L);
 			}
 		});
 	}

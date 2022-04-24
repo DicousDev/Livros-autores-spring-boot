@@ -1,6 +1,7 @@
 package com.senai.livros.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,13 @@ public class LivroService {
 			throw new NullPointerException("Erro ao tentar procurar um livro por id");
 		}
 		
-		Livro livro = repository.findById(idLivro).get();
-		if(livro == null) {
+		Optional<Livro> livro = repository.findById(idLivro);
+		if(livro.isEmpty()) {
 			throw new NotFoundRuntimeException("Busca por livro com id " + idLivro + " não foi encontrado.");
 		}
 		
-		LivroDTO livroDTO = new LivroDTO(livro);
+		Livro livroGet = livro.get();
+		LivroDTO livroDTO = new LivroDTO(livroGet);
 		return livroDTO;
 	}
 	
