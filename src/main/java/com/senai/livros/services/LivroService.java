@@ -38,8 +38,8 @@ public class LivroService {
 			throw new NotFoundRuntimeException("Busca por livro com id " + idLivro + " não foi encontrado.");
 		}
 		
-		Livro livroGet = livro.get();
-		LivroDTO livroDTO = new LivroDTO(livroGet);
+		Livro getLivro = livro.get();
+		LivroDTO livroDTO = new LivroDTO(getLivro);
 		return livroDTO;
 	}
 	
