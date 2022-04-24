@@ -40,7 +40,7 @@ public class LivroController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e);
 		}
 		catch(NotFoundRuntimeException e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e);
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e);
 		}
 	}
 	

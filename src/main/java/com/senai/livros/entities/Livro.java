@@ -34,29 +34,18 @@ public class Livro {
 	public Livro() {
 		
 	}
-	
-	public Livro(String titulo, String subtitulo, Integer numeroDePaginas, Integer anoDeLancamento) {
-		this.titulo = titulo;
-		this.subtitulo = subtitulo;
-		this.numeroDePaginas = numeroDePaginas;
-		this.anoDeLancamento = anoDeLancamento;
-	}
-	
+
 	public Livro(LivroDTO livro) {
 		id = livro.getId();
-		titulo = livro.getTitulo();
-		subtitulo = livro.getSubtitulo();
-		numeroDePaginas = livro.getNumeroDePaginas();
-		anoDeLancamento = livro.getAnoDeLancamento();
-		autores = livro.getAutores();
+		setTitulo(livro.getTitulo());
+		setSubtitulo(livro.getSubtitulo());
+		setNumeroDePaginas(livro.getNumeroDePaginas());
+		setAnoDeLancamento(livro.getAnoDeLancamento());
+		setAutores(livro.getAutores());
 	}
 
 	public Long getId() {
 		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getTitulo() {
@@ -95,7 +84,12 @@ public class Livro {
 		return autores;
 	}
 
-	public void setAutores(List<Autor> autores) {
+	private void setAutores(List<Autor> autores) {
+		
+		if(autores == null) {
+			return;
+		}
+		
 		this.autores = autores;
 	}
 }
