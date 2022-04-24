@@ -72,6 +72,7 @@ public class LivroService {
 		return new LivroDTO(livroAtualizado);
 	}
 
+	@Transactional
 	public void removeLivro(Long idLivro) throws RuntimeException {
 		
 		if(idLivro == null) {

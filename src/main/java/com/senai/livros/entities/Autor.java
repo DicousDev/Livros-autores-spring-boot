@@ -15,4 +15,16 @@ public class Autor {
 	private Long id;
 	private String nome;
 	private String nacionalidade;
+	
+	public Long getId() {
+		return id;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	public String getNacionalidade() {
+		return nacionalidade;
+	}
 }
