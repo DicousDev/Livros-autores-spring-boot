@@ -20,13 +20,13 @@ public class LivroTest {
 	private LivroService service;
 	
 	@Test
-	public void findById() {
+	public void findByLivroId() {
 		LivroDTO livro = service.findLivroById(1L);	
 		assertThat(livro).isNotNull();
 	}
 	
 	@Test
-	public void findByIdNull() {
+	public void findLivroByIdNull() {
 		Assertions.assertThrows(NullPointerException.class, new Executable() {
 			
 			@Override
@@ -37,7 +37,7 @@ public class LivroTest {
 	}
 	
 	@Test
-	public void findByIdNotFound() {
+	public void findLivroByIdNotFound() {
 		Assertions.assertThrows(NotFoundRuntimeException.class, new Executable() {
 			
 			@Override
