@@ -1,12 +1,13 @@
 package com.senai.livros.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,12 @@ public class LivroController {
 	public ResponseEntity<List<LivroDTO>> findLivrosAll() {
 		List<LivroDTO> livros = service.findLivrosAll();
 		return ResponseEntity.status(HttpStatus.OK).body(livros);
+	}
+	
+	@GetMapping(value = "/{idLivro}")
+	public ResponseEntity<LivroDTO> findLivroById(@PathVariable Long idLivro) {
+		LivroDTO livro = service.findLivroById(idLivro);
+		return ResponseEntity.status(HttpStatus.OK).body(livro);
 	}
 	
 	@PostMapping

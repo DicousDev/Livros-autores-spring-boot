@@ -10,8 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 
 import com.senai.livros.dto.LivroDTO;
-import com.senai.livros.entities.Livro;
-import com.senai.livros.repositories.LivroRepository;
+import com.senai.livros.exceptions.NotFoundRuntimeException;
 import com.senai.livros.services.LivroService;
 
 @SpringBootTest
@@ -22,7 +21,7 @@ public class LivroTest {
 	
 	@Test
 	public void findById() {
-		LivroDTO livro = service.getLivroById(1L);
+		LivroDTO livro = service.findLivroById(1L);	
 		assertThat(livro).isNotNull();
 	}
 	
@@ -32,18 +31,18 @@ public class LivroTest {
 			
 			@Override
 			public void execute() {
-				service.getLivroById(null);
+				service.findLivroById(null);
 			}
 		});
 	}
 	
 	@Test
 	public void findByIdNotFound() {
-		Assertions.assertThrows(NotFoundException.class, new Executable() {
+		Assertions.assertThrows(NotFoundRuntimeException.class, new Executable() {
 			
 			@Override
 			public void execute() {
-				service.getLivroById(9999L);
+				service.findLivroById(9999L);
 			}
 		});
 	}

@@ -2,6 +2,7 @@ package com.senai.livros.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.senai.livros.entities.Autor;
 import com.senai.livros.entities.Livro;
