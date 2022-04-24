@@ -1,7 +1,6 @@
 package com.senai.livros.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.senai.livros.dto.LivroDTO;
+import com.senai.livros.exceptions.NotFoundRuntimeException;
 import com.senai.livros.services.LivroService;
 
 @RestController
@@ -30,9 +30,17 @@ public class LivroController {
 	}
 	
 	@GetMapping(value = "/{idLivro}")
-	public ResponseEntity<LivroDTO> findLivroById(@PathVariable Long idLivro) {
-		LivroDTO livro = service.findLivroById(idLivro);
-		return ResponseEntity.status(HttpStatus.OK).body(livro);
+	public ResponseEntity<?> findLivroById(@PathVariable Long idLivro) {
+		try {
+			LivroDTO livro = service.findLivroById(idLivro);
+			return ResponseEntity.status(HttpStatus.OK).body(livro);
+		}
+		catch(NullPointerException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e);
+		}
+		catch(NotFoundRuntimeException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e);
+		}
 	}
 	
 	@PostMapping
