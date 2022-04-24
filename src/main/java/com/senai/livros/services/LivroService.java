@@ -30,7 +30,7 @@ public class LivroService {
 	public LivroDTO findLivroById(Long idLivro) {
 		
 		if(idLivro == null) {
-			throw new NullPointerException("Erro ao tentar procurar um livro por id");
+			throw new NullPointerException("Erro ao tentar procurar um livro por id.");
 		}
 		
 		Optional<Livro> livro = repository.findById(idLivro);
@@ -47,7 +47,7 @@ public class LivroService {
 	public LivroDTO insertLivro(LivroDTO livro) {
 		
 		if(livro == null) {
-			throw new NullPointerException("Erro ao tentar inserir um novo livro");
+			throw new NullPointerException("Erro ao tentar inserir um novo livro.");
 		}
 		
 		Livro livroParaSalvar = new Livro(livro);
@@ -59,7 +59,7 @@ public class LivroService {
 	public LivroDTO updateLivro(Long idLivro, LivroDTO livro) throws RuntimeException {
 		
 		if(livro == null) {
-			throw new NullPointerException("Erro ao tentar atualizar um livro");
+			throw new NullPointerException("Erro ao tentar atualizar um livro.");
 		}
 		
 		LivroDTO livroEncontrado = findLivroById(idLivro);
@@ -70,5 +70,19 @@ public class LivroService {
 		livroParaAtualizar.setAnoDeLancamento(livro.getAnoDeLancamento());
 		Livro livroAtualizado = repository.save(livroParaAtualizar);
 		return new LivroDTO(livroAtualizado);
+	}
+
+	public void removeLivro(Long idLivro) throws RuntimeException {
+		
+		if(idLivro == null) {
+			throw new NullPointerException("Erro ao tentar remover um livro.");
+		}
+		
+		Optional<Livro> livro = repository.findById(idLivro);
+		if(livro.isEmpty()) {
+			throw new NotFoundRuntimeException("Busca por livro com id " + idLivro + " não foi encontrado.");
+		}
+		
+		repository.deleteById(idLivro);
 	}
 }
