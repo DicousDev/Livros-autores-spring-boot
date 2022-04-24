@@ -29,7 +29,7 @@ public class LivroDTO {
 		subtitulo = livro.getSubtitulo();
 		numeroDePaginas = livro.getNumeroDePaginas();
 		anoDeLancamento = livro.getAnoDeLancamento();
-		autores = livro.getAutores();
+		setAutores(livro.getAutores());
 	}
 
 	public Long getId() {
@@ -54,5 +54,14 @@ public class LivroDTO {
 
 	public List<Autor> getAutores() {
 		return autores;
+	}
+	
+	private void setAutores(List<Autor> autores) {
+		
+		if(autores == null) {
+			return;
+		}
+		
+		this.autores = autores;
 	}
 }

@@ -43,33 +43,59 @@ public class Livro {
 	}
 	
 	public Livro(LivroDTO livro) {
+		id = livro.getId();
 		titulo = livro.getTitulo();
 		subtitulo = livro.getSubtitulo();
 		numeroDePaginas = livro.getNumeroDePaginas();
 		anoDeLancamento = livro.getAnoDeLancamento();
+		autores = livro.getAutores();
 	}
 
 	public Long getId() {
 		return id;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getTitulo() {
 		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	public String getSubtitulo() {
 		return subtitulo;
 	}
 
+	public void setSubtitulo(String subtitulo) {
+		this.subtitulo = subtitulo;
+	}
+
 	public Integer getNumeroDePaginas() {
 		return numeroDePaginas;
+	}
+
+	public void setNumeroDePaginas(Integer numeroDePaginas) {
+		this.numeroDePaginas = numeroDePaginas;
 	}
 
 	public Integer getAnoDeLancamento() {
 		return anoDeLancamento;
 	}
 
+	public void setAnoDeLancamento(Integer anoDeLancamento) {
+		this.anoDeLancamento = anoDeLancamento;
+	}
+
 	public List<Autor> getAutores() {
 		return autores;
+	}
+
+	public void setAutores(List<Autor> autores) {
+		this.autores = autores;
 	}
 }

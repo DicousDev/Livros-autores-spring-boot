@@ -56,12 +56,19 @@ public class LivroService {
 	}
 	
 	@Transactional
-	public LivroDTO updateLivro(Long idLivro, LivroDTO livro) {
+	public LivroDTO updateLivro(Long idLivro, LivroDTO livro) throws RuntimeException {
 		
 		if(livro == null) {
 			throw new NullPointerException("Erro ao tentar atualizar um livro");
 		}
 		
-		return null;
+		LivroDTO livroEncontrado = findLivroById(idLivro);
+		Livro livroParaAtualizar = new Livro(livroEncontrado);
+		livroParaAtualizar.setTitulo(livro.getTitulo());
+		livroParaAtualizar.setSubtitulo(livro.getSubtitulo());
+		livroParaAtualizar.setNumeroDePaginas(livro.getNumeroDePaginas());
+		livroParaAtualizar.setAnoDeLancamento(livro.getAnoDeLancamento());
+		Livro livroAtualizado = repository.save(livroParaAtualizar);
+		return new LivroDTO(livroAtualizado);
 	}
 }

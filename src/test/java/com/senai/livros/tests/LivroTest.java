@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 
 import com.senai.livros.dto.LivroDTO;
 import com.senai.livros.exceptions.NotFoundRuntimeException;
@@ -66,15 +65,6 @@ public class LivroTest {
 	}
 	
 	@Test
-	public void updateLivro() {
-		LivroDTO livroSalvado = service.insertLivro(new LivroDTO("TEST UPDATE", "LIVRO", 500, 2022));
-		
-		LivroDTO livroAlterado = new LivroDTO("", "", 50, 2022);
-		LivroDTO livroAlteradoSalvado = service.updateLivro(livroSalvado.getId(), livroAlterado);
-		assertThat(livroAlteradoSalvado).isSameAs(livroSalvado);
-	}
-	
-	@Test
 	public void updateLivroNull() {
 		Assertions.assertThrows(NullPointerException.class, new Executable() {
 			
@@ -88,7 +78,7 @@ public class LivroTest {
 	@Test
 	public void updateLivroNotFound() {
 		LivroDTO livroAlterado = new LivroDTO("", "", 50, 2022);
-		Assertions.assertThrows(NotFoundException.class, new Executable() {
+		Assertions.assertThrows(NotFoundRuntimeException.class, new Executable() {
 			
 			@Override
 			public void execute() {
