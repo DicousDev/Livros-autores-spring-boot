@@ -1,6 +1,5 @@
 # Autores de Livros
 
-## 💻 Sobre
 Um projeto para fins didáticos para salvar livros com seus devidos autores.
 
 ## 🚀 Tecnologias
